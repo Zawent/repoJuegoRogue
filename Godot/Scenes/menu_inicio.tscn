@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4y76w0pw24cw"]
+[gd_scene load_steps=7 format=3 uid="uid://b4y76w0pw24cw"]
 
 [ext_resource type="Script" uid="uid://crgj28xyrw1i" path="res://Scripts/menu_inicio.gd" id="1_lc4t7"]
 [ext_resource type="Texture2D" uid="uid://eigh5ki4ork0" path="res://Images/castillo8bit.png" id="2_32rtn"]
 [ext_resource type="FontFile" uid="uid://bgl0v5xd6gctg" path="res://Fonts/alagard.ttf" id="3_fok73"]
+[ext_resource type="AudioStream" uid="uid://dms543h5h7xro" path="res://Sounds/Charlie's Here - Pizza Parlor  Club Penguin OST.mp3" id="4_32rtn"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_32rtn"]
+color = Color(1, 1, 1, 1)
+thickness = 5
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fok73"]
+color = Color(0.215686, 0.337255, 1, 1)
+thickness = 5
 
 [node name="MenuInicio" type="Control"]
 layout_mode = 3
@@ -61,6 +70,10 @@ theme_override_fonts/font = ExtResource("3_fok73")
 theme_override_font_sizes/font_size = 45
 text = "Salir"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_32rtn")
+autoplay = true
+
 [node name="Options" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -98,6 +111,16 @@ offset_bottom = 389.0
 theme_override_fonts/font = ExtResource("3_fok73")
 theme_override_font_sizes/font_size = 45
 text = "Atras"
+
+[node name="HSlider" type="HSlider" parent="Options"]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 82.0
+offset_right = 412.0
+offset_bottom = 126.0
+theme_override_styles/slider = SubResource("StyleBoxLine_32rtn")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_fok73")
+value = 50.0
 
 [connection signal="pressed" from="MainButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainButtons/Options" to="." method="_on_options_pressed"]
