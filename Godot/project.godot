@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="JuegoRogue"
+run/main_scene="uid://b4y76w0pw24cw"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"

@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4y76w0pw24cw"]
+[gd_scene load_steps=13 format=3 uid="uid://b4y76w0pw24cw"]
 
 [ext_resource type="Script" uid="uid://crgj28xyrw1i" path="res://Scripts/menu_inicio.gd" id="1_lc4t7"]
 [ext_resource type="Texture2D" uid="uid://eigh5ki4ork0" path="res://Images/castillo8bit.png" id="2_32rtn"]
 [ext_resource type="FontFile" uid="uid://bgl0v5xd6gctg" path="res://Fonts/alagard.ttf" id="3_fok73"]
 [ext_resource type="AudioStream" uid="uid://dms543h5h7xro" path="res://Sounds/Charlie's Here - Pizza Parlor  Club Penguin OST.mp3" id="4_32rtn"]
+[ext_resource type="Script" uid="uid://cp8xdnhee7f2n" path="res://Scripts/audio_control.gd" id="5_fok73"]
+[ext_resource type="Texture2D" uid="uid://cmrmw8dbbf1cm" path="res://Images/Vol max.png" id="6_hqhtn"]
+[ext_resource type="Texture2D" uid="uid://cnwuu0jhjfncy" path="res://Images/Vol medio.png" id="7_aw1rd"]
+[ext_resource type="Texture2D" uid="uid://df8pgtaq27yii" path="res://Images/Vol min.png" id="8_kv616"]
+[ext_resource type="Texture2D" uid="uid://bkftk4agblbr6" path="res://Images/Vol mute.png" id="9_nt7jt"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_32rtn"]
 color = Color(1, 1, 1, 1)
@@ -12,6 +17,8 @@ thickness = 5
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_fok73"]
 color = Color(0.215686, 0.337255, 1, 1)
 thickness = 5
+
+[sub_resource type="ImageTexture" id="ImageTexture_hqhtn"]
 
 [node name="MenuInicio" type="Control"]
 layout_mode = 3
@@ -73,6 +80,7 @@ text = "Salir"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_32rtn")
 autoplay = true
+bus = &"Music"
 
 [node name="Options" type="Panel" parent="."]
 layout_mode = 1
@@ -112,7 +120,7 @@ theme_override_fonts/font = ExtResource("3_fok73")
 theme_override_font_sizes/font_size = 45
 text = "Atras"
 
-[node name="HSlider" type="HSlider" parent="Options"]
+[node name="AudioControl" type="HSlider" parent="Options"]
 layout_mode = 0
 offset_left = 173.0
 offset_top = 82.0
@@ -120,9 +128,27 @@ offset_right = 412.0
 offset_bottom = 126.0
 theme_override_styles/slider = SubResource("StyleBoxLine_32rtn")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_fok73")
-value = 50.0
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_fok73")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("5_fok73")
+audio_bus_name = "Music"
+vol_max = ExtResource("6_hqhtn")
+vol_medio = ExtResource("7_aw1rd")
+vol_min = ExtResource("8_kv616")
+vol_mute = ExtResource("9_nt7jt")
+
+[node name="VolumeImage" type="TextureRect" parent="Options"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 67.0
+offset_right = 136.0
+offset_bottom = 136.0
+texture = SubResource("ImageTexture_hqhtn")
 
 [connection signal="pressed" from="MainButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainButtons/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainButtons/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Options/BackMenu" to="." method="_on_back_menu_pressed"]
+[connection signal="value_changed" from="Options/AudioControl" to="Options/AudioControl" method="_on_value_changed"]
