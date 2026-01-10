@@ -40,8 +40,8 @@ color = Color(0.337684, 0.68955, 0.822377, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect"]
 layout_mode = 0
-offset_right = 1150.0
-offset_bottom = 645.0
+offset_right = 1160.0
+offset_bottom = 652.0
 texture = ExtResource("2_32rtn")
 
 [node name="MainButtons" type="VBoxContainer" parent="."]
@@ -147,8 +147,19 @@ offset_right = 136.0
 offset_bottom = 136.0
 texture = SubResource("ImageTexture_hqhtn")
 
+[node name="FullScreen" type="CheckBox" parent="Options"]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 132.0
+offset_right = 397.0
+offset_bottom = 197.0
+theme_override_fonts/font = ExtResource("3_fok73")
+theme_override_font_sizes/font_size = 24
+text = "Pantalla Completa"
+
 [connection signal="pressed" from="MainButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainButtons/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainButtons/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Options/BackMenu" to="." method="_on_back_menu_pressed"]
 [connection signal="value_changed" from="Options/AudioControl" to="Options/AudioControl" method="_on_value_changed"]
+[connection signal="toggled" from="Options/FullScreen" to="." method="_on_check_box_toggled"]
